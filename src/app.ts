@@ -6,7 +6,6 @@ require('express-async-errors');
 
 class App {
   public app: express.Application = express();
-
   public debugLog: debug.IDebugger = debug('app');
 
   constructor() {
