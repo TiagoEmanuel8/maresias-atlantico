@@ -1,0 +1,42 @@
+{
+  "name": "maresias-atlantico",
+  "version": "1.0.0",
+  "description": "É um projeto para um condomínio fictício chamado maresias do atlântico que facilita a rápida identificação dos moradores e seus veículos.",
+  "main": "./dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc && ts-node ./src/server.ts",
+    "start": "node .",
+    "nodemon": "nodemon --watch \"./src/**\" --ext \"ts,js\" --ignore \"src/**/*.spec.ts,src/**/*.json\" --exec \"ts-node src/server.ts\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "express-rescue": "^1.2.0",
+    "mongodb": "^5.4.0",
+    "mongoose": "^7.1.0",
+    "nodemon": "^2.0.22"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/debug": "^4.1.7",
+    "@types/express": "^4.17.17",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
+    "chai": "^4.3.7",
+    "eslint": "^8.39.0",
+    "jest": "^29.5.0",
+    "mocha": "^10.2.0",
+    "sinon": "^15.0.4",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.4",
+    "util": "^0.12.5"
+  }
+}
