@@ -25,3 +25,12 @@ export const residentMockUpdate = {
   phoneNumber: '',
   mobileNumber: ''
 }
+
+export const residentMockUpdateId = {
+  name: '',
+  email: '',
+  rg: '',
+  cpf: '',
+  phoneNumber: '',
+  mobileNumber: ''
+}
