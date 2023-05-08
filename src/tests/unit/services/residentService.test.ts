@@ -73,12 +73,12 @@ describe('Resident Service', () => {
     it('Updating resident is succesfully', async () => {
       sinon.stub(residentModel, 'update').resolves(residentMockUpdateId);
 
-      const updatedCar = await residentService.update('KozukiOden', residentMockUpdate);
-      expect(updatedCar).to.be.deep.equal(residentMockUpdateId);
+      const updatedResident = await residentService.update('KozukiOden', residentMockUpdate);
+      expect(updatedResident).to.be.deep.equal(residentMockUpdateId);
 
       sinon.restore();
     });
-    it('Fails to return an updated car - Zod Error', async () => {
+    it('Fails to return an updated resident - Zod Error', async () => {
       let error;
 
       try {
@@ -90,7 +90,7 @@ describe('Resident Service', () => {
       expect(error).to.be.instanceOf(ZodError);
     });
 
-    it('Fails to return an updated car - EntityNotFound', async () => {
+    it('Fails to return an updated resident - EntityNotFound', async () => {
       sinon.stub(residentModel, 'update').resolves(null);
 
       let error;
