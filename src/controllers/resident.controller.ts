@@ -20,23 +20,21 @@ class ResidentController {
     const ActualResident: IResident = {
       ...this.req.body,
       status: this.req.body.status || false,
-    }; 
+    };
 
-    try {
-      const newResident = await this._residentService.createResident(ActualResident)
-      return this.res.status(StatusCodes.CREATED).json(newResident)
-    } catch (error) {
-      return this.res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error });
-    }
+    const newResident = await this._residentService.createResident(ActualResident);
+    return this.res.status(StatusCodes.CREATED).json(newResident);
   }
 
   async getAllResidents() {
-    try {
-      const residents = await this._residentService.getResidents()
-      return this.res.status(StatusCodes.OK).json(residents)
-    } catch (error) {
-      return this.res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error });
-    }
+    const residents = await this._residentService.getResidents();
+    return this.res.status(StatusCodes.OK).json(residents);
+  }
+
+  async getResidentById() {
+    const { id } = this.req.params;
+    const resident = await this._residentService.getResidentById(id);
+    return this.res.status(StatusCodes.OK).json(resident);
   }
 }
 

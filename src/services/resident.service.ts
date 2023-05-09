@@ -1,6 +1,6 @@
 import { Resident } from '../domains/Resident';
 import { ResidentModel } from '../models/ResidentModel';
-import { BadRequest } from '../errors/index.error';
+import { BadRequest, NotFound } from '../errors/index.error';
 import { IServiceResident, IResident } from '../interfaces/index.interface';
 
 class ResidentService implements IServiceResident {
@@ -19,8 +19,8 @@ class ResidentService implements IServiceResident {
   async createResident(resident: IResident): Promise<Resident | null> {
     const { email, cpf, rg } = resident;
     if (!this.isValidEmail(email)) throw new BadRequest('Invalid Email!');
-    if (cpf.toString().length >  12) throw new BadRequest('Invalid Cpf!');
-    if (rg.toString().length >  10) throw new BadRequest('Invalid rg!');
+    if (cpf.toString().length >=  12) throw new BadRequest('Invalid Cpf!');
+    if (rg.toString().length >=  10) throw new BadRequest('Invalid rg!');
 
     const residentModel = new ResidentModel();
     const newResident = await residentModel.create(resident);
@@ -31,6 +31,14 @@ class ResidentService implements IServiceResident {
     const residentModel = new ResidentModel();
     const allResidents = await residentModel.findAll();
     return allResidents.map((resident) => this.createResidentDomain(resident))
+  }
+
+  async getResidentById(id: string) {
+    const residentModel = new ResidentModel();
+    const resident = await residentModel.findById(id);
+    if(!resident) throw new NotFound('Resident not found');
+
+    return this.createResidentDomain(resident)
   }
 }
 
