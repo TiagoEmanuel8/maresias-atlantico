@@ -24,8 +24,9 @@ abstract class AbstractODM<T> {
     return this.model.findById(id);
   }
 
-  public async findByName(name: string) {
-    return this.model.findOne({ name });
+  public async getResidentialUnit(tower: string, apartament: string) {
+    const transformParams = { tower: tower.toString(), apartment: apartament.toString() };
+    return this.model.findOne(transformParams);
   }
 
 }

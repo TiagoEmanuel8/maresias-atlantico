@@ -18,4 +18,9 @@ residentsRouter.get(
   (req, res, next) => new ResidentController(req, res, next).getResidentById(),
 );
 
+residentsRouter.get(
+  '/resident',
+  (req, res, next) => new ResidentController(req, res, next).getResidentialUnit(),
+);
+
 export { residentsRouter };

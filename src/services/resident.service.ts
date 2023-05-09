@@ -40,9 +40,10 @@ class ResidentService implements IServiceResident {
 
     return this.createResidentDomain(resident)
   }
-  async getResidentByName(name: string): Promise<(Resident | null)> {
+
+  async getResidentialUnit(tower: string, apartament: string): Promise<(Resident | null)> {
     const residentModel = new ResidentModel();
-    const resident = await residentModel.findByName(name);
+    const resident = await residentModel.getResidentialUnit(tower, apartament);
     if(!resident) throw new NotFound('Resident not found');
 
     return this.createResidentDomain(resident)
