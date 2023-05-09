@@ -24,6 +24,10 @@ abstract class AbstractODM<T> {
     return this.model.findById(id);
   }
 
+  public async findByName(name: string) {
+    return this.model.findOne({ name });
+  }
+
 }
 
 export default AbstractODM;

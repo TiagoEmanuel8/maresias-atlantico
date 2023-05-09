@@ -33,7 +33,7 @@ class Apartament {
     return this.id;
   }
 
-  public getName(): string | undefined {  
+  public getName() {  
     return this.name;
   }
   

@@ -5,6 +5,7 @@ interface IServiceResident {
   createResident(resident: IResident): Promise<Resident | null>
   getResidents(): Promise<(Resident | null)[]>
   getResidentById(id: string): Promise<Resident | null>
+  getResidentByName(name: string): Promise<(Resident | null)>
 }
 
 export default IServiceResident;

@@ -33,13 +33,21 @@ class ResidentService implements IServiceResident {
     return allResidents.map((resident) => this.createResidentDomain(resident))
   }
 
-  async getResidentById(id: string) {
+  async getResidentById(id: string): Promise<(Resident | null)> {
     const residentModel = new ResidentModel();
     const resident = await residentModel.findById(id);
     if(!resident) throw new NotFound('Resident not found');
 
     return this.createResidentDomain(resident)
   }
+  async getResidentByName(name: string): Promise<(Resident | null)> {
+    const residentModel = new ResidentModel();
+    const resident = await residentModel.findByName(name);
+    if(!resident) throw new NotFound('Resident not found');
+
+    return this.createResidentDomain(resident)
+  }
+
 }
 
 export { ResidentService }

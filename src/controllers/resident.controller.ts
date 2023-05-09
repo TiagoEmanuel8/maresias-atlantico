@@ -36,6 +36,12 @@ class ResidentController {
     const resident = await this._residentService.getResidentById(id);
     return this.res.status(StatusCodes.OK).json(resident);
   }
+
+  async getResidentByName() {
+    const { name } = this.req.body;
+    const resident = await this._residentService.getResidentByName(name);
+    return this.res.status(StatusCodes.OK).json(resident);
+  }
 }
 
 export { ResidentController };
