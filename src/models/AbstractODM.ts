@@ -29,6 +29,13 @@ abstract class AbstractODM<T> {
     return this.model.findOne(transformParams);
   }
 
+  public async updateResident(id: string, resident: IResident) {
+    return this.model.updateOne({ id }, { ...resident });
+  }
+
+  public async deleteResident(id: string) {
+    return this.model.findByIdAndDelete(id);
+  }
 }
 
 export default AbstractODM;

@@ -6,6 +6,8 @@ interface IServiceResident {
   getResidents(): Promise<(Resident | null)[]>
   getResidentById(id: string): Promise<Resident | null>
   getResidentialUnit(tower: string, apartament: string): Promise<(Resident | null)>
+  updatedResident(id: string, newResident: IResident): Promise<(Resident | null) >
+  deleteResident(id: string): void
 }
 
 export default IServiceResident;

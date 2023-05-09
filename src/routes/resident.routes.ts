@@ -23,4 +23,14 @@ residentsRouter.get(
   (req, res, next) => new ResidentController(req, res, next).getResidentialUnit(),
 );
 
+residentsRouter.patch(
+  '/residents/:id',
+  (req, res, next) => new ResidentController(req, res, next).updateResident(),
+);
+
+residentsRouter.delete(
+  '/residents/:id',
+  (req, res, next) => new ResidentController(req, res, next).deleteResident(),
+);
+
 export { residentsRouter };

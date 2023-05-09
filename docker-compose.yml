@@ -1,3 +1,4 @@
+# docker-compose up -d && docker exec -it maresias_atlantico bash
 version: "3"
 
 services:

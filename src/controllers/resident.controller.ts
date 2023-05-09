@@ -42,6 +42,22 @@ class ResidentController {
     const resident = await this._residentService.getResidentialUnit(tower, apartament);
     return this.res.status(StatusCodes.OK).json(resident);
   }
+
+  async updateResident() {
+    const { id } = this.req.params;
+    const ActualResident: IResident = {
+      ...this.req.body,
+      status: this.req.body.status || false,
+    };
+    const updatedResident = await this._residentService.updatedResident(id, ActualResident);
+    return this.res.status(StatusCodes.OK).json(updatedResident);
+  }
+
+  async deleteResident() {
+    const { id } = this.req.params;
+    const resident = await this._residentService.deleteResident(id);
+    return this.res.status(StatusCodes.NO_CONTENT).json(resident);
+  }
 }
 
 export { ResidentController };
