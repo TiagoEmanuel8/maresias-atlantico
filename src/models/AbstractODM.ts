@@ -1,5 +1,5 @@
 import { model, Model, models, Schema } from 'mongoose';
-// import { IResident } from '../interfaces/index.interface';
+import { IResident } from '../interfaces/index.interface';
 
 abstract class AbstractODM<T> {
   protected schema: Schema;
@@ -10,6 +10,10 @@ abstract class AbstractODM<T> {
     this.schema = schema;
     this.modelName = modelName;
     this.model = models[this.modelName] || model(this.modelName, this.schema);
+  }
+
+  public async create(resident: IResident) {
+    return this.model.create(resident);
   }
 
   public async findAll() {
