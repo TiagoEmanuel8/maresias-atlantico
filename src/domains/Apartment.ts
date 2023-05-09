@@ -5,7 +5,7 @@ class Apartament {
   protected name: string;
   protected tower: number;
   protected apartament: number;
-  protected email?: string;
+  protected email: string;
   protected rg: number;
   protected cpf: number;
   protected phoneNumber?: number;

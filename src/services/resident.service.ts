@@ -1,8 +1,14 @@
 import { Resident } from '../domains/Resident';
 import { ResidentModel } from '../models/ResidentModel';
+import { BadRequest } from '../errors/index.error';
 import { IServiceResident, IResident } from '../interfaces/index.interface';
 
 class ResidentService implements IServiceResident {
+  private isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
   private createResidentDomain(newResident: IResident | null): Resident | null {
     if (newResident) {
       return new Resident(newResident);
@@ -11,6 +17,11 @@ class ResidentService implements IServiceResident {
   }
 
   async createResident(resident: IResident): Promise<Resident | null> {
+    const { email, cpf, rg } = resident;
+    if (!this.isValidEmail(email)) throw new BadRequest('Invalid Email!');
+    if (cpf.toString().length >  12) throw new BadRequest('Invalid Cpf!');
+    if (rg.toString().length >  10) throw new BadRequest('Invalid rg!');
+
     const residentModel = new ResidentModel();
     const newResident = await residentModel.create(resident);
     return this.createResidentDomain(newResident)

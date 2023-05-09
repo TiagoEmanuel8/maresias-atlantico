@@ -8,7 +8,7 @@ class ResidentModel extends AbstractODM<IResident> {
       name: { type: String, required: true },
       tower: { type: Number, required: false },
       apartment: { type: Number, required: false },
-      email: { type: String, required: false },
+      email: { type: String, required: true },
       rg: { type: Number, required: true },
       cpf: { type: Number, required: true },
       phoneNumber: { type: Number, required: true },

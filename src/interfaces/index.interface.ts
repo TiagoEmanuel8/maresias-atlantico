@@ -1,7 +1,11 @@
 import { IResident } from './IResidents.interface';
-import { IServiceResident } from './IServiceResident';
+import { IValid } from './IValid';
+import { IKey } from './IKey';
+import IServiceResident from './IServiceResident';
 
 export {
+  IServiceResident,
   IResident,
-  IServiceResident
+  IValid,
+  IKey
 };

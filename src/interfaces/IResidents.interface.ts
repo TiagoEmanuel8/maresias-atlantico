@@ -3,7 +3,7 @@ interface IResident {
   name: string,
   tower: number,
   apartment: number,
-  email?: string,
+  email: string,
   rg: number,
   cpf: number,
   phoneNumber: number,
