@@ -24,13 +24,14 @@ abstract class AbstractODM<T> {
     return this.model.findById(id);
   }
 
-  public async getResidentialUnit(tower: string, apartament: string) {
-    const transformParams = { tower: tower.toString(), apartment: apartament.toString() };
+  public async getResidentialUnit(tower: string, apartment: string) {
+    const transformParams = { tower: tower.toString(), apartment: apartment.toString() };
     return this.model.findOne(transformParams);
   }
 
-  public async updateResident(id: string, resident: IResident) {
-    return this.model.updateOne({ id }, { ...resident });
+  public async updateResident(_id: string, resident: IResident) {
+    const updated = await this.model.findOneAndUpdate({ _id }, { ...resident }, { new: true });
+    return updated;
   }
 
   public async deleteResident(id: string) {

@@ -1,10 +1,10 @@
 import { IResident } from '../interfaces/index.interface';
 
-class Apartament {
+class Apartment {
   protected id: string | undefined;
   protected name: string;
   protected tower: number;
-  protected apartament: number;
+  protected apartment: number;
   protected email: string;
   protected rg: number;
   protected cpf: number;
@@ -18,7 +18,7 @@ class Apartament {
     this.id = resident.id;
     this.name = resident.name;
     this.tower = resident.tower;
-    this.apartament = resident.apartment;
+    this.apartment = resident.apartment;
     this.email = resident.email;
     this.rg = resident.rg;
     this.cpf = resident.cpf;
@@ -42,7 +42,7 @@ class Apartament {
   }
 
   public getApartment(): number | undefined {
-    return this.apartament;
+    return this.apartment;
   }
 
   public getEmail(): string | undefined {
@@ -62,4 +62,4 @@ class Apartament {
   }
 }
 
-export { Apartament }
+export { Apartment }

@@ -17,10 +17,11 @@ class ResidentService implements IServiceResident {
   }
 
   async createResident(resident: IResident): Promise<Resident | null> {
-    const { email, cpf, rg } = resident;
+    const { name, tower, apartment, email, cpf, rg } = resident;
+    if (!name || !tower || !apartment || !email || !cpf || !rg) throw new BadRequest('The fields name, tower, apartment, email, cpf, rg are required');
     if (!this.isValidEmail(email)) throw new BadRequest('Invalid Email!');
-    if (cpf.toString().length >=  12) throw new BadRequest('Invalid Cpf!');
-    if (rg.toString().length >=  10) throw new BadRequest('Invalid rg!');
+    if (cpf.toString().length !==  11) throw new BadRequest('Invalid Cpf!');
+    if (rg.toString().length >  10) throw new BadRequest('Invalid rg!');
 
     const residentModel = new ResidentModel();
     const newResident = await residentModel.create(resident);
@@ -36,30 +37,27 @@ class ResidentService implements IServiceResident {
   async getResidentById(id: string): Promise<(Resident | null)> {
     const residentModel = new ResidentModel();
     const resident = await residentModel.findById(id);
-
-
     return this.createResidentDomain(resident)
   }
 
-  async getResidentialUnit(tower: string, apartament: string): Promise<(Resident | null)> {
+  async getResidentialUnit(tower: string, apartment: string): Promise<(Resident | null)> {
     const residentModel = new ResidentModel();
-    const resident = await residentModel.getResidentialUnit(tower, apartament);
+    const resident = await residentModel.getResidentialUnit(tower, apartment);
     if(!resident) throw new NotFound('Resident not found');
 
-    return this.createResidentDomain(resident)
+    return this.createResidentDomain(resident);
   }
 
   async updatedResident(id: string, newResident: IResident) {
+    // console.log(id, newResident)
     const residentModel = new ResidentModel();
-    await residentModel.updateResident(id, newResident);
-    const updatedResident = await this.getResidentById(id)
-    return updatedResident;
+    const updatedResident = await residentModel.updateResident(id, newResident);
+    return this.createResidentDomain(updatedResident)
   }
 
   async deleteResident(id: string) {
     const residentModel = new ResidentModel();
     await residentModel.deleteResident(id);
-    // return this.createResidentDomain(resident)
   }
 
 }

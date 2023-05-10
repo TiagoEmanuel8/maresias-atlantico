@@ -1,7 +1,7 @@
 interface IApartment {
   name: string;
   tower: number;
-  apartament: number;
+  apartment: number;
   email?: string;
   rg: number;
   cpf: number;

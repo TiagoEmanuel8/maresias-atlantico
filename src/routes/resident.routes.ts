@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { ResidentController } from '../controllers/index.controller';
+import { ResidentValidate } from '../middlewares/residentMiddleware';
 
 const residentsRouter = Router();
 
@@ -15,6 +16,7 @@ residentsRouter.get(
 
 residentsRouter.get(
   '/residents/:id',
+  (req, res, next) => new ResidentValidate().validateResident(req, res, next),
   (req, res, next) => new ResidentController(req, res, next).getResidentById(),
 );
 
@@ -25,11 +27,13 @@ residentsRouter.get(
 
 residentsRouter.patch(
   '/residents/:id',
+  (req, res, next) => new ResidentValidate().validateResident(req, res, next),
   (req, res, next) => new ResidentController(req, res, next).updateResident(),
 );
 
 residentsRouter.delete(
   '/residents/:id',
+  (req, res, next) => new ResidentValidate().validateResident(req, res, next),
   (req, res, next) => new ResidentController(req, res, next).deleteResident(),
 );
 

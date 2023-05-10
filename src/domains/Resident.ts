@@ -1,7 +1,7 @@
 import { IResident } from '../interfaces/IResidents.interface';
-import { Apartament } from './Apartment';
+import { Apartment } from './Apartment';
 
-class Resident extends Apartament {
+class Resident extends Apartment {
   constructor(resident: IResident) {
     super(resident);
   }
