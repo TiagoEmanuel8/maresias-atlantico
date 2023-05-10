@@ -1,38 +1,13 @@
-import cors from 'cors';
+import 'express-async-errors';
 import express from 'express';
-import debug from 'debug';
+import { residentsRouter } from './routes/index.routes';
+import { errorMiddleware } from './middlewares/errorMiddleware';
 
+const app = express();
 require('express-async-errors');
 
-class App {
-  public app: express.Application = express();
+app.use(express.json());
+app.use(residentsRouter);
+app.use(errorMiddleware);
 
-  public debugLog: debug.IDebugger = debug('app');
-
-  constructor() {
-    this.config();
-  }
-
-  private config():void {
-    const accessControl: express.RequestHandler = (_req, res, next) => {
-      res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS,PUT,PATCH');
-      res.header('Access-Control-Allow-Headers', '*');
-      next();
-    };
-
-    this.app.use(express.json());
-    this.app.use(accessControl);
-    this.app.use(cors());
-  }
-
-  public start(PORT: string | number):void {
-    this.app.listen(PORT, () => {
-      console.log('iniciado porta:', PORT);
-    });
-  }
-}
-
-export { App };
-
-export const { app } = new App();
+export default app;
