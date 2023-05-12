@@ -1,0 +1,118 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Condominio Maresias do Atlântico",
+    "description": "Documentação geral para entender o comportamento da API",
+    "contact": { "email": "tiago.emanuel.n@gmail.com" },
+    "version": "1.0.0",
+    "x-logo": {
+      "url": "https://s4cconstrucoes.com.br/wp-content/uploads/2018/05/pisa.png"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3002",
+      "description": "Documentação com a api rodando localmente"
+    },
+    {
+      "url": "https://site.com.br",
+      "description": "Documentação com a api rodando em produção"
+    }
+  ],
+  "paths": {
+    "/residents": {
+      "post": {
+        "summary": "Cadastrar um novo morador",
+        "description": "Cadastrar novos moradores no sistema",
+        "tags": ["Residents"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createResident"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "name": "Luiza Ayla Moreira",
+                    "tower": 1,
+                    "apartment": 102,
+                    "email": "luizamoreira99@gmail.com",
+                    "rg": 275485870,
+                    "cpf": 20759302014,
+                    "phoneNumber": 8137622958,
+                    "mobileNumber": 81998117672,
+                    "dependentName1": "Lucas Sierra Moreira",
+                    "dependentName2": "Marta Luana Moreira",
+                    "dependentName3": "",
+                    "dependentName4": "",
+                    "observation": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": { "description": "The fields name, tower, apartment, email, cpf, rg are required" },
+          "400-B": { "description": "Invalid Email!" },
+          "400-C": { "description": "Invalid Cpf!" },
+          "400-D": { "description": "Invalid rg!" },
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/findResident"
+                }
+              }
+            }
+          }
+        }
+      }
+    
+    }
+  },
+  "components": {
+    "schemas": {
+      "createResident": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "tower": { "type": "integer" },
+          "apartment": { "type": "integer" },
+          "email": { "type": "string" },
+          "rg": { "type": "integer" },
+          "cpf": { "type": "integer" },
+          "phoneNumber": { "type": "string" },
+          "mobileNumber": { "type": "string" },
+          "dependentName1": { "type": "string" },
+          "dependentName2": { "type": "string" },
+          "dependentName3": { "type": "integer" },
+          "dependentName4": { "type": "string" },
+          "observation": { "type": "string" }
+        }
+      },
+      "findResident": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "name": { "type": "string" },
+          "tower": { "type": "integer" },
+          "apartment": { "type": "integer" },
+          "email": { "type": "string" },
+          "rg": { "type": "integer" },
+          "cpf": { "type": "integer" },
+          "phoneNumber": { "type": "string" },
+          "mobileNumber": { "type": "string" },
+          "dependentName1": { "type": "string" },
+          "dependentName2": { "type": "string" },
+          "dependentName3": { "type": "integer" },
+          "dependentName4": { "type": "string" },
+          "observation": { "type": "string" }
+        }
+      }
+    }
+  }
+}
