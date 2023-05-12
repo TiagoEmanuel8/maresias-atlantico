@@ -28,6 +28,7 @@
     "nodemon": "^2.0.22",
     "shelljs": "^0.8.5",
     "superagent": "^8.0.9",
+    "swagger-ui-express": "^4.6.3",
     "zod": "^3.21.4"
   },
   "devDependencies": {
