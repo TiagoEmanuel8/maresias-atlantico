@@ -144,6 +144,7 @@
         }],
         "responses": {
           "404": { "description": "Resident not found" },
+          "422": { "description": "Invalid mongo id" },
           "200": {
             "description": "OK",
             "content": {
@@ -151,6 +152,51 @@
                 "schema": {
                   "type": "object",
                   "$ref": "#/components/schemas/findResident"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Atualizar dados",
+        "description": "Alterar dados do morador pelo id",
+        "tags": ["Residents"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Nome do morador pelo ID",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/findResident"
+              },
+              "examples": {
+                "product": {
+                  "value": {
+                    "email": "gcampos@email.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": { "description": "Resident not found" },
+          "422": { "description": "Invalid mongo id" },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/findProduct"
                 }
               }
             }
