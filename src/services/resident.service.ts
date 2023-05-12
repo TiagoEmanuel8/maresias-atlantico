@@ -37,6 +37,7 @@ class ResidentService implements IServiceResident {
   async getResidentById(id: string): Promise<(Resident | null)> {
     const residentModel = new ResidentModel();
     const resident = await residentModel.findById(id);
+    if(!resident) throw new NotFound('Resident not found');
     return this.createResidentDomain(resident)
   }
 
@@ -49,7 +50,6 @@ class ResidentService implements IServiceResident {
   }
 
   async updatedResident(id: string, newResident: IResident) {
-    // console.log(id, newResident)
     const residentModel = new ResidentModel();
     const updatedResident = await residentModel.updateResident(id, newResident);
     return this.createResidentDomain(updatedResident)

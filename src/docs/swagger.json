@@ -1,0 +1,272 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Condominio Maresias do Atlântico",
+    "description": "Documentação geral para entender o comportamento da API",
+    "contact": { "email": "tiago.emanuel.n@gmail.com" },
+    "version": "1.0.0",
+    "x-logo": {
+      "url": "https://s4cconstrucoes.com.br/wp-content/uploads/2018/05/pisa.png"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3002",
+      "description": "Documentação com a api rodando localmente"
+    },
+    {
+      "url": "https://site.com.br",
+      "description": "Documentação com a api rodando em produção"
+    }
+  ],
+  "paths": {
+    "/residents": {
+      "post": {
+        "summary": "Cadastrar um novo morador",
+        "description": "Cadastrar novos moradores no sistema",
+        "tags": ["Residents"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createResident"
+              },
+              "examples": {
+                "resident": {
+                  "value": {
+                    "name": "Luiza Ayla Moreira",
+                    "tower": 1,
+                    "apartment": 102,
+                    "email": "luizamoreira99@gmail.com",
+                    "rg": 275485870,
+                    "cpf": 20759302014,
+                    "phoneNumber": 8137622958,
+                    "mobileNumber": 81998117672,
+                    "dependentName1": "Lucas Sierra Moreira",
+                    "dependentName2": "Marta Luana Moreira",
+                    "dependentName3": "",
+                    "dependentName4": "",
+                    "observation": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": { "description": "The fields name, tower, apartment, email, cpf, rg are required" },
+          "400-B": { "description": "Invalid Email!" },
+          "400-C": { "description": "Invalid Cpf!" },
+          "400-D": { "description": "Invalid rg!" },
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/findResident"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Listar moradores",
+        "description": "Listar todos os moradores cadastrados",
+        "tags": ["Residents"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "$ref": "#/components/schemas/findResident"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resident": {
+        "get": {
+          "summary": "Busca o morador pelo número da torre e apartamento",
+          "description": "Busca o morador pelo número da torre e apartamento",
+          "tags": ["Residents"],
+          "parameters": [
+            {
+                "name": "tower",
+                "in": "query",
+                "description": "busca do morador pelo numero da torre",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            {
+                "name": "apartment",
+                "in": "query",
+                "description": "busca do morador pelo número do apartamento",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            }
+          ],
+          "responses": {
+            "404": { "description": "Resident not found" },
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/findResident"
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/residents/{id}": {
+      "get": {
+        "summary": "Listar morador",
+        "description": "Listar um morador pelo seu id",
+        "tags": ["Residents"],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "description": "busca do morador por id",
+          "required": true
+        }],
+        "responses": {
+          "404": { "description": "Resident not found" },
+          "422": { "description": "Invalid mongo id" },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/findResident"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Atualizar dados",
+        "description": "Alterar dados do morador pelo id",
+        "tags": ["Residents"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do morador",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/findResident"
+              },
+              "examples": {
+                "product": {
+                  "value": {
+                    "email": "gcampos@email.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": { "description": "Resident not found" },
+          "422": { "description": "Invalid mongo id" },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/findResident"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletar um morador pelo seu id",
+        "summary": "Deletar dados do morador",
+        "tags": ["Residents"],
+        "parameters": [{
+          "in": "path",
+          "name": "id",
+          "description": "Id do morador",
+          "required": true
+        }],
+        "responses": {
+          "404": { "description": "Resident not found" },
+          "422": { "description": "Invalid mongo id" },
+          "204": { "description": "" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "createResident": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "tower": { "type": "integer" },
+          "apartment": { "type": "integer" },
+          "email": { "type": "string" },
+          "rg": { "type": "integer" },
+          "cpf": { "type": "integer" },
+          "phoneNumber": { "type": "string" },
+          "mobileNumber": { "type": "string" },
+          "dependentName1": { "type": "string" },
+          "dependentName2": { "type": "string" },
+          "dependentName3": { "type": "integer" },
+          "dependentName4": { "type": "string" },
+          "observation": { "type": "string" }
+        }
+      },
+      "findResident": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "name": { "type": "string" },
+          "tower": { "type": "integer" },
+          "apartment": { "type": "integer" },
+          "email": { "type": "string" },
+          "rg": { "type": "integer" },
+          "cpf": { "type": "integer" },
+          "phoneNumber": { "type": "string" },
+          "mobileNumber": { "type": "string" },
+          "dependentName1": { "type": "string" },
+          "dependentName2": { "type": "string" },
+          "dependentName3": { "type": "integer" },
+          "dependentName4": { "type": "string" },
+          "observation": { "type": "string" }
+        }
+      },
+      "searchResident": {
+        "type": "object",
+        "properties": {
+          "tower": { "type": "integer" },
+          "apartment": { "type": "integer" }
+        }
+      }
+    }
+  }
+}
