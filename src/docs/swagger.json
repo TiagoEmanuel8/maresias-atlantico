@@ -89,6 +89,33 @@
           }
         }
       }
+    },
+    "/residents/{id}": {
+      "get": {
+        "summary": "Listar morador",
+        "description": "Listar um morador pelo seu id",
+        "tags": ["Residents"],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "description": "busca do morador por id",
+          "required": true
+        }],
+        "responses": {
+          "404": { "description": "Resident not found" },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/findResident"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
