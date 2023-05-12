@@ -70,8 +70,25 @@
             }
           }
         }
+      },
+      "get": {
+        "summary": "Listar moradores",
+        "description": "Listar todos os moradores cadastrados",
+        "tags": ["Residents"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "$ref": "#/components/schemas/findResident"
+                }
+              }
+            }
+          }
+        }
       }
-    
     }
   },
   "components": {
