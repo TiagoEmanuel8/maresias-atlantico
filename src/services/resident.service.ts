@@ -50,7 +50,6 @@ class ResidentService implements IServiceResident {
   }
 
   async updatedResident(id: string, newResident: IResident) {
-    // console.log(id, newResident)
     const residentModel = new ResidentModel();
     const updatedResident = await residentModel.updateResident(id, newResident);
     return this.createResidentDomain(updatedResident)

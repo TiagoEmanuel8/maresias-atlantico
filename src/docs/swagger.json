@@ -32,7 +32,7 @@
                 "$ref": "#/components/schemas/createResident"
               },
               "examples": {
-                "user": {
+                "resident": {
                   "value": {
                     "name": "Luiza Ayla Moreira",
                     "tower": 1,
@@ -89,6 +89,47 @@
           }
         }
       }
+    },
+    "/resident": {
+        "get": {
+          "summary": "Busca o morador pelo número da torre e apartamento",
+          "description": "Busca o morador pelo número da torre e apartamento",
+          "tags": ["Residents"],
+          "parameters": [
+            {
+                "name": "tower",
+                "in": "query",
+                "description": "busca do morador pelo numero da torre",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            {
+                "name": "apartment",
+                "in": "query",
+                "description": "busca do morador pelo número do apartamento",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            }
+          ],
+          "responses": {
+            "404": { "description": "Resident not found" },
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/findResident"
+                  }
+                }
+              }
+            }
+          }
+        }
     },
     "/residents/{id}": {
       "get": {
@@ -155,6 +196,13 @@
           "dependentName3": { "type": "integer" },
           "dependentName4": { "type": "string" },
           "observation": { "type": "string" }
+        }
+      },
+      "searchResident": {
+        "type": "object",
+        "properties": {
+          "tower": { "type": "integer" },
+          "apartment": { "type": "integer" }
         }
       }
     }
