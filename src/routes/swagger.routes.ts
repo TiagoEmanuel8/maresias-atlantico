@@ -10,4 +10,18 @@ swaggerRouter.use(
   swaggerUi.setup(swaggerDocument)
 );
 
+swaggerRouter.use(
+  '/redocly',
+  (_req, res) => {
+    return res.sendFile(process.cwd() + '/src/docs/swagger.json');
+  }
+);
+
+swaggerRouter.use(
+  '/documentation',
+  (_req, res) => {
+    return res.sendFile(process.cwd() + '/public/index.html');
+  }
+);
+
 export { swaggerRouter };
