@@ -12,10 +12,10 @@
   "servers": [
     {
       "url": "http://localhost:3002",
-      "description": "Documentação com a api rodando localmente"
+      "description": "Documentação com a api rodando em desenvlvimento"
     },
     {
-      "url": "https://site.com.br",
+      "url": "https://maresiasatlantico.up.railway.app",
       "description": "Documentação com a api rodando em produção"
     }
   ],
