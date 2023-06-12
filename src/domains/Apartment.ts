@@ -23,10 +23,6 @@ class Apartment {
     this.rg = resident.rg;
     this.cpf = resident.cpf;
     this.phoneNumber = resident.phoneNumber;
-    this.dependentName1 = resident.dependentName1;
-    this.dependentName2 = resident.dependentName2;
-    this.dependentName3 = resident.dependentName3;
-    this.dependentName4 = resident.dependentName4;
   }
 
   public getId(): string | undefined {  
