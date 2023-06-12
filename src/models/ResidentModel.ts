@@ -19,6 +19,9 @@ class ResidentModel extends AbstractODM<IResident> {
       dependentName4: { type: String, required: false },
       observation: { type: String, required: false },
     });
+    // usar uma nova coleção para armazenar os outros membros da família
+    // usar uma nova coleção para armazenar visitantes
+    // usar uma nova coleção para armazenar veiculos de visitantes
     super(schema, 'Residents');
   }
 }
