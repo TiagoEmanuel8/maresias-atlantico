@@ -13,10 +13,6 @@ class ResidentModel extends AbstractODM<IResident> {
       cpf: { type: Number, required: true },
       phoneNumber: { type: Number, required: true },
       mobileNumber: { type: Number, required: false },
-      dependentName1: { type: String, required: false },
-      dependentName2: { type: String, required: false },
-      dependentName3: { type: String, required: false },
-      dependentName4: { type: String, required: false },
       observation: { type: String, required: false },
     });
     super(schema, 'Residents');
